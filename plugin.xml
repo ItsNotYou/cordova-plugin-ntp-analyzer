@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="de.unipotsdam.cordova.ntpanalyzer"
+    version="0.0.1">
+    <name>NTP Analyzer</name>
+    <description>Cordova NTP Analyzer Plugin</description>
+	<author>Hendrik Geﬂner</author>
+    <keywords>cordova,ntp</keywords>
+    <repo>https://github.com/ItsNotYou/cordova-plugin-ntp-analyzer.git</repo>
+
+    <js-module src="www/ntpanalyzer.js" name="NtpAnalyzer">
+        <clobbers target="ntp.analyzer" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="NtpAnalyzer" >
+                <param name="android-package" value="de.unipotsdam.cordova.ntpanalyzer.NtpAnalyzerPlugin"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/NtpAnalyzerPlugin.java" target-dir="src/de/unipotsdam/cordova/ntpanalyzer" />
+        <source-file src="src/android/NtpAnalyzer.java" target-dir="src/de/unipotsdam/cordova/ntpanalyzer" />
+        <source-file src="src/android/libs/commons-net-3.4.jar" target-dir="libs" />
+    </platform>
+
+</plugin>
