@@ -26,4 +26,17 @@
         <source-file src="src/android/libs/commons-net-3.4.jar" target-dir="libs" />
     </platform>
 
+    <!-- browser -->
+    <platform name="browser">
+        <config-file target="config.xml" parent="/*">
+            <feature name="NtpAnalyzer">
+                <param name="browser-package" value="NtpAnalyzer" />
+            </feature>
+        </config-file>
+
+        <js-module src="src/browser/NtpAnalyzerProxy.js" name="NtpAnalyzerProxy">
+            <runs />
+        </js-module>
+    </platform>
+
 </plugin>
