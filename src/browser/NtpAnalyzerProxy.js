@@ -1,6 +1,5 @@
 var browser = require('cordova/platform');
 var cordova = require('cordova');
-var $ = require('jquery');
 
 function ajax(options) {
     var xmlhttp = new XMLHttpRequest();
