@@ -17,9 +17,9 @@ function ajax(options) {
     xmlhttp.send();
 }
 
-function diagnose(host, success, error) {
+function diagnose(success, error, params) {
     ajax({
-        url: "http://localhost:8080/ntpanalyzer/rest/diagnose?host=" + encodeURIComponent(host),
+        url: "http://localhost:8080/ntpanalyzer/rest/diagnose?host=" + encodeURIComponent(params[0]),
         success: function(result) { success(parseInt(result)); },
         error: error
     });
