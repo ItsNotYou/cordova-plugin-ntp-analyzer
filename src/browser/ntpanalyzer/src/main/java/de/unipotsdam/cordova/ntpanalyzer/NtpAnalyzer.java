@@ -17,7 +17,7 @@ public class NtpAnalyzer {
 
 	public static final int DEFAULT_TIMEOUT = 10000;
 
-	public int diagnoseNtpConnection(String host) {
+	public int diagnoseNtpConnection(String host, Integer timeout) {
 		InetAddress hostAddress = null;
 		try {
 			hostAddress = InetAddress.getByName(host);
@@ -29,7 +29,7 @@ public class NtpAnalyzer {
 		TimeInfo result = null;
 		try {
 			client = new NTPUDPClient();
-			client.setDefaultTimeout(DEFAULT_TIMEOUT);
+			client.setDefaultTimeout(timeout != null ? timeout : DEFAULT_TIMEOUT);
 			client.open();
 
 			result = client.getTime(hostAddress);

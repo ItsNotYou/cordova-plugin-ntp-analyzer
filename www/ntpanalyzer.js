@@ -5,9 +5,10 @@ var argscheck = require('cordova/argscheck'),
 function Analyzer() {
 }
 
-Analyzer.prototype.diagnose = function(host, successCallback, errorCallback) {
-    argscheck.checkArgs('SFF', 'NtpAnalyzer.diagnose', arguments);
-    exec(successCallback, errorCallback, "NtpAnalyzer", "diagnose", [host]);
+Analyzer.prototype.diagnose = function(params, successCallback, errorCallback) {
+    // OFF means Object, Function, Function
+    argscheck.checkArgs('OFF', 'NtpAnalyzer.diagnose', arguments);
+    exec(successCallback, errorCallback, "NtpAnalyzer", "diagnose", [params.host, params.timeout]);
 };
 
 module.exports = new Analyzer();

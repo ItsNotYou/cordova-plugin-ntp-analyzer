@@ -18,8 +18,12 @@ function ajax(options) {
 }
 
 function diagnose(success, error, params) {
+    var url = "http://localhost:8080/ntpanalyzer/rest/diagnose";
+    url += "&host=" + encodeURIComponent(params[0]);
+    url += params[1] ? "&timeout=" + encodeURIComponent(params[1]) : "";
+
     ajax({
-        url: "http://localhost:8080/ntpanalyzer/rest/diagnose?host=" + encodeURIComponent(params[0]),
+        url: url,
         success: function(result) { success(parseInt(result)); },
         error: error
     });

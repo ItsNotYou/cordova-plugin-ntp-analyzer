@@ -14,11 +14,19 @@ public class NtpAnalyzerService {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String diagnose(@QueryParam("host") String host) {
+	public String diagnose(@QueryParam("host") String host, @QueryParam("timeout") String rawTimeout) {
+		Integer timeout = null;
+		try {
+			timeout = Integer.parseInt(rawTimeout);
+		} catch (NumberFormatException e) {
+			Response response = Response.status(Status.BAD_REQUEST).entity("Expected timeout to be a number").build();
+			throw new WebApplicationException(response);
+		}
+
 		if (host != null) {
 			try {
 				NtpAnalyzer analyzer = new NtpAnalyzer();
-				int diagnose = analyzer.diagnoseNtpConnection(host);
+				int diagnose = analyzer.diagnoseNtpConnection(host, timeout);
 				return Integer.toString(diagnose);
 			} catch (Exception e) {
 				Response response = Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
